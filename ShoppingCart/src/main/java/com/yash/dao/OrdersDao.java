@@ -9,5 +9,5 @@ public interface OrdersDao {
 
 	Orders getOrderDetails(int orderId);
 
-	void deleteOrder(int orderId);
+	void deleteOrder(Orders orders);
 }

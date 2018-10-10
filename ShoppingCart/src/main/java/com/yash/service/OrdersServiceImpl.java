@@ -1,14 +1,22 @@
 package com.yash.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.yash.dao.CustomerDaoImpl;
 import com.yash.dao.OrderDaoImpl;
+import com.yash.dao.ProductDaoImpl;
 import com.yash.model.Orders;
 
+@Service
 public class OrdersServiceImpl implements OrdersService{
 
 	@Autowired
 	OrderDaoImpl ordersDaoImpl;
+	@Autowired
+	CustomerDaoImpl customerDaoImpl;
+	@Autowired
+	ProductDaoImpl productDaoImpl;
 	
 	@Override
 	public Orders placeOrder(Orders orders) {
@@ -17,19 +25,22 @@ public class OrdersServiceImpl implements OrdersService{
 
 	@Override
 	public Orders updateOrder(Orders orders) {
-		// TODO Auto-generated method stub
-		return null;
+		return ordersDaoImpl.updateOrder(orders);
 	}
 
 	@Override
 	public Orders getOrderDetails(int orderId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Orders order = ordersDaoImpl.getOrderDetails(orderId);
+		order.setCustomer(customerDaoImpl.getCustomer(order.getCustomerId()));
+		order.setProduct(productDaoImpl.getProduct(order.getProductId()));
+		return order;
 	}
 
 	@Override
 	public void deleteOrder(int orderId) {
-		// TODO Auto-generated method stub
+		Orders orders = getOrderDetails(orderId);
+		ordersDaoImpl.deleteOrder(orders);
 		
 	}
 

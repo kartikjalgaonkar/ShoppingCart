@@ -9,15 +9,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.any;
 
 import static org.mockito.Mockito.doNothing;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.yash.dao.ProductDaoImpl;
-import com.yash.model.Customer;
 import com.yash.model.Product;
-import com.yash.service.CustomerServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProductDaoImplTest {
@@ -59,7 +56,7 @@ public class ProductDaoImplTest {
 	}
 	
 	@Test
-	public void shouldUpdateCustomer(){
+	public void shouldUpdateProduct(){
 		Product product = new Product();
 		product.setProductId(1);
 		product.setProductName("Mobile Device");
@@ -73,7 +70,7 @@ public class ProductDaoImplTest {
 	}
 	
 	@Test
-	public void shouldDeleteCustomer(){
+	public void shouldDeleteProduct(){
 		Product product = new Product();
 		product.setProductId(1);
 		product.setProductName("Mobile Device");
